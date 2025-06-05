@@ -6,13 +6,43 @@
     box-sizing: border-box;
 }
 
+#canvas-container {
+    position: relative;
+    width: 100%;
+    /* background-color: blueviolet; */
+    overflow: hidden;
+}
+
 #controls {
     display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
     gap: 10px;
     padding: 20px;
     background-color: #f0f0f0;
+    width: max-content;
+}
+
+label {
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+.reset_btn {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: center;
 }

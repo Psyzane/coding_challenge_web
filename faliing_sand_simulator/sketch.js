@@ -1,7 +1,8 @@
 let grid;
-let rows, cols, w = 1;
+let rows, cols
+let steps = 1, w = 1;
 let hueValue = 1;
-let speedslider;
+let speedslider, pixelSizeSlider;
 
 function make2DArray(cols, rows) {
     let arr = new Array(cols);
@@ -24,17 +25,22 @@ function isAtHorizontalEdge(i) {
 }
 
 function setup() {
-    let canvas = createCanvas(800, 600);
+    let canvas = createCanvas(400, 400);
     canvas.parent("canvas-container");
-
     colorMode(HSB, 360, 255, 255);
-    cols = width / w;
-    rows = height / w;
-    grid = make2DArray(cols, rows);
-
+    
     speedslider = createSlider(0, 10, 1, 1);
-    speedslider.parent("controls");
+    speedslider.parent("simulation_speed");
     speedslider.style("width", "200px");
+    speedslider.input(speedChanged);
+    
+    pixelSizeSlider = createSlider(1, 10, 1, 1);
+    pixelSizeSlider.parent("pixel_size");
+    pixelSizeSlider.style("width", "200px");
+    pixelSizeSlider.input(windowResized);
+
+    speedChanged();
+    windowResized();
 }
 
 function mousePressed() {
@@ -81,7 +87,6 @@ function draw() {
         }
     }
 
-    let steps = speedslider.value();
     for (let s = 0; s < steps; s++) {
         updateSimulation();
     }
@@ -125,7 +130,25 @@ function updateSimulation() {
     grid = nextGrid; // Apply the updated grid
 }
 
-let btn = document.getElementsByClassName("btn")[0];
+function speedChanged() {
+    steps = speedslider.value();
+    document.getElementById("speed_value").innerText = steps;
+}
+
+function windowResized() {
+    resizeCanvas(400, 400);
+    w = pixelSizeSlider.value();
+    cols = Math.floor(width / w);
+    rows = Math.floor(height / w);
+    grid = make2DArray(cols, rows);
+    document.getElementById("pixel_size_value").innerText = w;
+}
+
+let btn = document.getElementsByClassName("reset_btn")[0];
 btn.addEventListener("click", () => {
-    console.log(grid);
+    for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+            grid[i][j] = 0; // Reset the grid
+        }
+    }
 });
