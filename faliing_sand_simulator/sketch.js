@@ -1,6 +1,7 @@
 let grid;
-let rows, cols, w = 5;
+let rows, cols, w = 1;
 let hueValue = 1;
+let speedslider;
 
 function make2DArray(cols, rows) {
     let arr = new Array(cols);
@@ -18,12 +19,22 @@ function withinRows(j) {
     return j >= 0 && j < rows;
 }
 
+function isAtHorizontalEdge(i) {
+    return i <= 0 || i >= cols - 1;
+}
+
 function setup() {
-    createCanvas(400, 400);
+    let canvas = createCanvas(800, 600);
+    canvas.parent("canvas-container");
+
     colorMode(HSB, 360, 255, 255);
     cols = width / w;
     rows = height / w;
     grid = make2DArray(cols, rows);
+
+    speedslider = createSlider(0, 10, 1, 1);
+    speedslider.parent("controls");
+    speedslider.style("width", "200px");
 }
 
 function mousePressed() {
@@ -70,6 +81,13 @@ function draw() {
         }
     }
 
+    let steps = speedslider.value();
+    for (let s = 0; s < steps; s++) {
+        updateSimulation();
+    }
+}
+
+function updateSimulation() {
     // let nextGrid = grid.map(arr => [...arr]); // Deep copy of grid
     let nextGrid = make2DArray(cols, rows);
 
@@ -77,7 +95,11 @@ function draw() {
         for (let j = 0; j < rows; j++) {
             let state = grid[i][j];
             if (state > 0) {
-                let dir = floor(random(-2, 3)); // Allow broader horizontal spread
+                let dir = floor(random(-2, 3));
+
+                if (isAtHorizontalEdge(i + dir)) {
+                    dir = 0;
+                }
 
                 if (j + 1 < rows) { // Check bounds for row
                     let below = grid[i][j + 1];
