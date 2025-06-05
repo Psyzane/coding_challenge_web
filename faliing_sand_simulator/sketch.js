@@ -1,8 +1,9 @@
 let grid;
-let rows, cols
-let steps = 1, w = 1;
+let rows, cols;
+let width = 500, height = 500;
 let hueValue = 1;
 let speedslider, pixelSizeSlider;
+let steps = 1, w = 1;
 
 function make2DArray(cols, rows) {
     let arr = new Array(cols);
@@ -25,7 +26,7 @@ function isAtHorizontalEdge(i) {
 }
 
 function setup() {
-    let canvas = createCanvas(400, 400);
+    let canvas = createCanvas(width, height);
     canvas.parent("canvas-container");
     colorMode(HSB, 360, 255, 255);
     
@@ -136,7 +137,7 @@ function speedChanged() {
 }
 
 function windowResized() {
-    resizeCanvas(400, 400);
+    resizeCanvas(width, height);
     w = pixelSizeSlider.value();
     cols = Math.floor(width / w);
     rows = Math.floor(height / w);
