@@ -30,12 +30,12 @@ function setup() {
     canvas.parent("canvas-container");
     colorMode(HSB, 360, 255, 255);
     
-    speedslider = createSlider(0, 10, 1, 1);
+    speedslider = createSlider(0, 10, 3, 1);
     speedslider.parent("simulation_speed");
     speedslider.style("width", "200px");
     speedslider.input(speedChanged);
     
-    pixelSizeSlider = createSlider(1, 10, 1, 1);
+    pixelSizeSlider = createSlider(1, 10, 3, 1);
     pixelSizeSlider.parent("pixel_size");
     pixelSizeSlider.style("width", "200px");
     pixelSizeSlider.input(windowResized);

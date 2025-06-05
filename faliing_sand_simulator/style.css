@@ -19,10 +19,11 @@ body {
 
 #main-container {
     width: min-content;
-background-color: #f0f0f0;
-    padding: 15px;
+    background-color: #f0f0f0;
+    margin-block: 20px;
+    padding-inline: 15px;
     display: flex;
-flex-direction: column;
+    flex-direction: column;
     justify-content: start;
     align-items: center;
     border: 5px dashed #ccc;
