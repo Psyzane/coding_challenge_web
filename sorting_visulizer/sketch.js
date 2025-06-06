@@ -1,9 +1,10 @@
 let width = 400, height = 400;
 let randomValues = [];
+let step = 0;
 let speed = 1;
 let w = 10; // Width of each bar
 
-
+// BUTTON SELECTION
 const buttons = document.querySelectorAll('.btn');
 buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -17,15 +18,16 @@ buttons[0].addEventListener('click', () => {
     step = 0;
     initValues(0, height - 10);
     drawValues();
-    loop();
 });
 
+// INITIALIZE RANDOM VALUES
 function initValues(min, max) {
     for (let i = 0; i < floor(width / w); i++) {
         randomValues.push(floor(random(min, max)));
     }
 }
 
+// DRAW VALUES ON CANVAS
 function drawValues() {
     background(220);
     for (let i = 0; i < randomValues.length; i++) {
@@ -36,6 +38,7 @@ function drawValues() {
     }
 }
 
+// SETUP FUNCTION
 function setup() {
     let canvas = createCanvas(400, 400);
     canvas.parent('main__canvas');
@@ -44,17 +47,18 @@ function setup() {
     noLoop();
 }
 
-const start_btn = document.querySelector('.start__btn');
+// TOGGLE LOOPING
+const start_btn = document.querySelector('.start__sort');
 start_btn.addEventListener('click', () => {
     if (isLooping()) {
         noLoop();
-        console.log(start_btn);
+        start_btn.textContent = 'Start Sorting';
     } else {
         loop();
+        start_btn.textContent = 'Stop Sorting';
     }
 });
 
-let step = 0;
 
 function draw() {
     background('red');
