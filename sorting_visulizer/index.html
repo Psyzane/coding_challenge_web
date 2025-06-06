@@ -13,16 +13,17 @@
             <h1>Sorting Visualizer</h1>
             <p>Click on the buttons to visualize different sorting algorithms.</p>
         </div>
-        <div class="main__buttons">
-            <button id="bubbleSort">Bubble Sort</button>
-            <!-- <button id="selectionSort">Selection Sort</button>
-            <button id="insertionSort">Insertion Sort</button>
-            <button id="mergeSort">Merge Sort</button>
-            <button id="quickSort">Quick Sort</button> -->
-        </div>
         <div id="main__canvas">
             <!-- The canvas will be created by p5.js -->
         </div>
+        <div class="main__buttons">
+            <button class="btn selected" id="bubbleSort">Bubble Sort</button>
+            <button class="btn selected" id="selectionSort">Selection Sort</button>
+            <button class="btn selected" id="insertionSort">Insertion Sort</button>
+            <button class="btn selected" id="mergeSort">Merge Sort</button>
+            <button class="btn selected" id="quickSort">Quick Sort</button>
+        </div>
+        <button class="start__sort">Start Sorting</button>
     </section>
     
     <script src="sketch.js"></script>
