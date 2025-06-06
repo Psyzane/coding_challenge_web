@@ -1,0 +1,37 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid #333;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+button:hover, button:focus {
+    background-color: #333;
+    color: #fff;
+}
+
+.main__canvas {
+    width: 100%;
+    height: 100vh;
+    /* background-color: #000; */
+    position: relative;
+}
