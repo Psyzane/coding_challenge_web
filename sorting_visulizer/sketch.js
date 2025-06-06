@@ -29,10 +29,12 @@ function initValues(min, max) {
 
 // DRAW VALUES ON CANVAS
 function drawValues() {
-    background(220);
+    colorMode(RGB);
+    background(24,49,83);
     for (let i = 0; i < randomValues.length; i++) {
-        stroke('magenta');
+        stroke(195, 56, 232);
         strokeWeight(2);
+        fill(116, 192, 232);
         rect(i * w, height - randomValues[i], w, randomValues[i]);
         // line(i*w, height, i*w, randomValues[i]);
     }
