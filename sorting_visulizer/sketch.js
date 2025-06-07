@@ -3,6 +3,7 @@ let randomValues = [];
 let step = 0;
 let speed = 1;
 let w = 10; // Width of each bar
+let sorting = false;
 
 // BUTTON SELECTION
 const buttons = document.querySelectorAll('.btn');
@@ -10,15 +11,16 @@ buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
         buttons.forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
+        noLoop();
+        step = 0;
+        randomValues = [];
+        initValues(0, height - 10);
+        sorting = false;
+        drawValues();
     });
     buttons.forEach(b => b.classList.remove('selected'));
 });
 buttons[0].classList.add('selected');
-buttons[0].addEventListener('click', () => {
-    step = 0;
-    initValues(0, height - 10);
-    drawValues();
-});
 
 // INITIALIZE RANDOM VALUES
 function initValues(min, max) {
@@ -30,7 +32,7 @@ function initValues(min, max) {
 // DRAW VALUES ON CANVAS
 function drawValues() {
     colorMode(RGB);
-    background(24,49,83);
+    background(24, 49, 83);
     for (let i = 0; i < randomValues.length; i++) {
         stroke(195, 56, 232);
         strokeWeight(2);
@@ -52,13 +54,14 @@ function setup() {
 // TOGGLE LOOPING
 const start_btn = document.querySelector('.start__sort');
 start_btn.addEventListener('click', () => {
-    if (isLooping()) {
+    if (sorting) {
         noLoop();
         start_btn.textContent = 'Start Sorting';
     } else {
         loop();
-        start_btn.textContent = 'Stop Sorting';
+        start_btn.textContent = 'Pause Sorting';
     }
+    sorting = !sorting;
 });
 
 
