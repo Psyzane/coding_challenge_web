@@ -3,6 +3,15 @@ let pipes = [];
 let score = 0;
 let gameOver = false;
 let pause = false;
+let bg, ground, scoreBoard, r_tbn
+
+function preload() {
+    bg = loadImage('assets/background.png');
+    ground = loadImage('assets/floor.png');
+    scoreBoard = loadImage('assets/scoreboard.png');
+    scoreBoard.resize(0, 200);
+    r_tbn = loadImage('assets/restart_button.png');
+}
 
 function newGame() {
     bird = new Bird();
@@ -13,18 +22,19 @@ function newGame() {
 }
 
 function setup() {
-    createCanvas((400, 600));
+    createCanvas(400, 600);
     frameRate(60);
     newGame();
 }
 
 function draw() {
     background(0);
+    movingBG();
     GameLoop();
+    gameOverScreen();
 }
 
 function GameLoop() {
-
     if (!gameOver) {
         bird.show();
         if (pause) {
@@ -37,43 +47,15 @@ function GameLoop() {
 
         bird.update();
 
-        // Add new pipes
-        if (frameCount % 75 === 0) {
-            pipes.push(new Pipe());
-        }
-
-        // Update and show pipes
-        for (let i = pipes.length - 1; i >= 0; i--) {
-            pipes[i].update();
-            pipes[i].show();
-
-            // Check for collision
-            if (pipes[i].hits(bird)) {
-                gameOver = true;
-            }
-
-            // Remove off-screen pipes and increase score
-            if (pipes[i].offscreen()) {
-                pipes.splice(i, 1);
-                score++;
-            }
-        }
+        pipelogic();
 
         // Display score
         fill(255);
         textSize(32);
         textAlign(CENTER);
-        text(`Score: ${score}`, width / 2, 50);
+        text(`${score}`, width / 2, 40);
     } else {
-        fill(255, 0, 0);
-        textSize(64);
-        textAlign(CENTER);
-        text('Game Over', width / 2, height / 2 - 20);
-        textSize(32);
-        text(`Final Score: ${score}`, width / 2, height / 2 + 30);
-
-        textSize(32);
-        text(`Tap 'space' to restart`, width / 2, height * 0.80 + 30);
+        gameOverScreen();
     }
 }
 
@@ -87,4 +69,64 @@ function keyPressed() {
             bird.flap();
         }
     }
+}
+
+function pipelogic() {
+    // Add new pipes
+    if (frameCount % 75 === 0) {
+        pipes.push(new Pipe());
+    }
+
+    // Update and show pipes
+    for (let i = pipes.length - 1; i >= 0; i--) {
+        pipes[i].update();
+        pipes[i].show();
+
+        // Check for collision
+        if (pipes[i].hits(bird)) {
+            gameOver = true;
+            console.log('Game Over');
+        }
+
+        if (pipes[i].score()) {
+            score++;
+        }
+
+        // Remove off-screen pipes and increase score
+        if (pipes[i].offscreen()) {
+            pipes.splice(i, 1);
+        }
+    }
+}
+
+
+let bgX = 0;
+function movingBG() {
+    // Draw the background image
+    image(bg, 0 - bgX, 0, width, height);
+    image(bg, width - bgX, 0, width, height);
+
+    // Draw the ground image
+    image(ground, 0 - bgX, height - 75, width, 75);
+    image(ground, width - bgX, height - 75, width, 75);
+
+    // Reset background position
+    if (bgX >= width) {
+        bgX = 0;
+    }
+    bgX += 2;
+}
+
+function gameOverScreen() {
+    image(scoreBoard, width / 2 - 2 * scoreBoard.width, height * 0.30, scoreBoard.width * 4, scoreBoard.height * 4);
+    image(r_tbn, width / 2 - r_tbn.width, height * 0.46 + 100, r_tbn.width * 2, r_tbn.height * 2);
+
+    fill(255, 0, 0);
+    textSize(64);
+    textAlign(CENTER);
+    textSize(32);
+
+    textFont('assets/press-start-2p.ttf');
+    text(`${score}`, width / 2, height / 2 - 50);
+
 }
