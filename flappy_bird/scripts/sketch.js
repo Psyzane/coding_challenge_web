@@ -79,7 +79,6 @@ function mousePressed() {
     }
 }
 
-
 function pipelogic() {
     // Add new pipes
     if (frameCount % 75 === 0) {
@@ -136,11 +135,14 @@ function gameOverScreen() {
     fill(255, 0, 0);
     textAlign(CENTER);
     
-    textFont('assets/ka1.ttf');
     push();
+    textFont('assets/ka1.ttf');
     fill(0);
     textSize(30);
     text(`${score}`, width / 2, height / 2 - 50);
     pop();
+    
+    textSize(20);
+    text(`Press 'SPACE' to Restart` , width/2, Number(3.8*height/5));
     
 }
