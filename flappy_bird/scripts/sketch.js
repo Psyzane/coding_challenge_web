@@ -9,7 +9,6 @@ function preload() {
     bg = loadImage('assets/background.png');
     ground = loadImage('assets/floor.png');
     scoreBoard = loadImage('assets/scoreboard.png');
-    scoreBoard.resize(0, 200);
     r_tbn = loadImage('assets/restart_button.png');
 }
 
@@ -31,7 +30,6 @@ function draw() {
     background(0);
     movingBG();
     GameLoop();
-    gameOverScreen();
 }
 
 function GameLoop() {
@@ -70,6 +68,17 @@ function keyPressed() {
         }
     }
 }
+
+function mousePressed() {
+    if (gameOver) {
+        // newGame();
+    } else if (pause) {
+        pause = false;
+    } else {
+        bird.flap();
+    }
+}
+
 
 function pipelogic() {
     // Add new pipes
@@ -118,15 +127,20 @@ function movingBG() {
 }
 
 function gameOverScreen() {
-    image(scoreBoard, width / 2 - 2 * scoreBoard.width, height * 0.30, scoreBoard.width * 4, scoreBoard.height * 4);
-    image(r_tbn, width / 2 - r_tbn.width, height * 0.46 + 100, r_tbn.width * 2, r_tbn.height * 2);
+    scoreBoard.resize(0, 180);
+    image(scoreBoard, width / 2 - scoreBoard.width/2, height * 0.30, scoreBoard.width, scoreBoard.height);
+
+    r_tbn.resize(0, 40);
+    image(r_tbn, width / 2 - r_tbn.width / 2, height * 0.46 + 100, r_tbn.width, r_tbn.height);
 
     fill(255, 0, 0);
-    textSize(64);
     textAlign(CENTER);
-    textSize(32);
-
-    textFont('assets/press-start-2p.ttf');
+    
+    textFont('assets/ka1.ttf');
+    push();
+    fill(0);
+    textSize(30);
     text(`${score}`, width / 2, height / 2 - 50);
-
+    pop();
+    
 }
