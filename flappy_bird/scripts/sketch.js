@@ -70,6 +70,13 @@ function keyPressed() {
 }
 
 function mousePressed() {
+
+    if (mouseY > height * 0.46 + 100 && mouseY < height * 0.46 + 100 + r_tbn.height &&
+        mouseX > width / 2 - r_tbn.width / 2 && mouseX < width / 2 + r_tbn.width / 2) {
+        newGame();
+        return;
+    }
+
     if (gameOver) {
         // newGame();
     } else if (pause) {
@@ -93,7 +100,6 @@ function pipelogic() {
         // Check for collision
         if (pipes[i].hits(bird)) {
             gameOver = true;
-            console.log('Game Over');
         }
 
         if (pipes[i].score()) {
