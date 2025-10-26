@@ -1,0 +1,63 @@
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker:regular);
+
+:root {
+    --section-a-bg: black;
+    --section-a-text-color: white;
+    --section-b-bg: rgb(253, 216, 53);
+    --section-b-text-color: black;
+    --yellow: rgb(253, 216, 53);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+section {
+    width: 100%;
+    height: 100dvh;
+
+    display: grid;
+    place-items: center;
+
+    overflow: hidden;
+    position: absolute;
+
+    transition-duration: 20ms;
+}
+
+.a {
+    background-color: var(--section-a-bg);
+    z-index: 1;
+}
+.a h1 {
+    color: var(--section-a-text-color);
+}
+.a h1 span {
+    font-family: "Permanent Marker", cursive;
+    color: var(--yellow);
+}
+
+.b {
+    background-color: var(--section-b-bg);
+    z-index: 2;
+    width: 50%;
+}
+.b h1 {
+    color: var(--section-b-text-color);
+}
+.b h1 span {
+    font-family: "Permanent Marker", cursive;
+    color: white;
+}
+
+section h1 {
+    font-family: Arial, sans-serif;
+    font-size: 7vw;
+    font-weight: 800;
+    text-align: center;
+    color: white;
+    margin: 0px 10vw;
+    width: 80vw;
+}
