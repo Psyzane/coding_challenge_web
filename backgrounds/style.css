@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: rgb(245, 230, 255);
+    --circle1: rgb(142, 68, 236);
+    --circle2: rgb(155, 89, 182);
+    --circle3: rgb(249, 114, 137);
+    --black: rgb(21, 21, 21);
+}
+
+body {
+    padding: 2%;
+}
+
+section {
+    max-height: 90dvh;
+    aspect-ratio: 8/5;
+    border: 2px solid var(--black);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.hero {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    background: rgb(245, 230, 255);
+    position: relative;
+}
+
+.dashed__circle {
+    position: absolute;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 3px dashed black;
+}
+.dashed__circle:nth-child(1) {
+    width: 30%;
+}
+.dashed__circle:nth-child(2) {
+    width: 60%;
+}
+.dashed__circle:nth-child(3) {
+    width: 90%;
+}
+
+.planet {
+    width: 25%;
+    position: absolute;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--circle1);
+    border: 2px solid black;
+}
+.shadow {
+    width: 20%;
+    top: 14%;
+    left: 15%;
+    background: black;
+    rotate: 90deg;
+    overflow: hidden;
+}
+.circle {
+    width: 100%;
+    margin-left: -15%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--circle2);
+}
+
+.third {
+    width: 13%;
+    top: 70%;
+    left: 22%;
+}
+.third > .circle {
+    background: var(--circle1);
+}
+.fourth {
+    width: 9%;
+    top: 8%;
+    left: 65%;
+    rotate: 45deg;
+}
+.fourth > .circle {
+    background: var(--circle3);
+}
+.fifth {
+    width: 6%;
+    top: 59.3%;
+    left: 75%;
+}
+.fifth > .circle {
+    background: var(--circle1);
+}
