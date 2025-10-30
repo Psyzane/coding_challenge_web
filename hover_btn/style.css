@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     height: 100dvh;
     background-color: #f0f0f0;
@@ -48,26 +49,32 @@ section {
     font-weight: lighter;
     transition: all 0.3s ease;
 }
+
 .btn_1:hover .arrow_container {
     margin-right: 32px;
 }
+
 .arrow:nth-child(2),
 .arrow:nth-child(3) {
     position: absolute;
     transform: translateX(-15px);
     transition: all 0.3s ease;
 }
+
 .btn_1:hover .arrow {
     scale: 2;
 }
+
 .btn_1:hover .arrow:nth-child(1) {
     animation: color_anim 1s infinite 0.1s;
 }
+
 .btn_1:hover .arrow:nth-child(2) {
     animation: color_anim 1s infinite 0.4s;
     transform: translateX(2px);
     scale: 1.2;
 }
+
 .btn_1:hover .arrow:nth-child(3) {
     animation: color_anim 1s infinite 0.7s;
     transform: translateX(17px);
@@ -78,10 +85,65 @@ section {
     0% {
         color: white;
     }
+
     50% {
         color: #FBC638;
     }
+
     100% {
         color: white;
     }
+}
+
+
+/* <---- SECOND BUTTON ----> */
+.btn_2 {
+    --anim_time: 0.15s;
+    position: relative;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 32px;
+}
+
+.btn_2>p {
+    z-index: 99;
+    padding: 15px 30px;
+    background: #e84545;
+    transition: all var(--anim_time) ease;
+}
+
+.btn_2>span {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    bottom: 0%;
+    right: 0%;
+    z-index: -2;
+    transition: all var(--anim_time) ease;
+}
+
+.btn_2>span:nth-child(1) {
+    transform: skewX(0) scale(0) rotateZ(50deg);
+}
+.btn_2>span:nth-child(2) {
+    transform: skewX(0) scale(0) rotateZ(-50deg);
+}
+
+.btn_2:hover>p {
+    transform: skewX(-16deg);
+    background: #b33a3a;
+}
+
+.btn_2:hover>span:nth-child(1) {
+    background-color: blue;
+    transform: skewX(32deg) scale(1.1) rotateZ(6deg);
+}
+
+.btn_2:hover>span:nth-child(2) {
+    border: 2px solid #0056b3;
+    transform: skewX(-32deg) scale(1.2) rotateZ(-10deg);
 }
