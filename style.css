@@ -1,0 +1,60 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+section {
+    margin-inline: auto;
+    max-width: 1024px;
+}
+
+ul {
+    margin: min(1rem,10%);
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 10rem), 1fr)
+    );
+    gap: 1rem;
+}
+
+li > a {
+    text-decoration: none;
+    aspect-ratio: 16/9;
+    background: #e3eff1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+    color: yell;
+}
+
+li {
+    transition: all 0.3s ease;
+}
+
+li > a:hover {
+    background: #e6e6fa;
+    scale: 1.2;
+    border: 2px solid black;
+}
+
+li:hover + * ,
+li:hover + * + *,
+li:hover + * + * + *,
+li:hover + * + * + * + *,
+li:hover + * + * + * + * + *,
+li:hover + * + * + * + * + * + *,
+li:has(+ *:hover),
+li:has(+ * + *:hover),
+li:has(+ * + * + *:hover),
+li:has(+ * + * + * + *:hover ),
+li:has(+ * + * + * + * + *:hover ),
+li:has(+ * + * + * + * + * + *:hover ) {
+    opacity: 0.4;
+}

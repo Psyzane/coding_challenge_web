@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    height: 100dvh;
+    background-color: #f0f0f0;
+}
+
+section {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn_1 {
+    position: relative;
+    padding: 15px 30px;
+    color: #fff;
+    background-color: #0454e8;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 32px;
+    box-shadow: 6px 6px 0 black;
+    transform: skewX(-16deg);
+    transition: all 0.3s ease;
+}
+
+.btn_1:hover {
+    background-color: #0056b3;
+    box-shadow: 10px 10px 0 yellowgreen;
+}
+
+.btn_1 .arrow_container {
+    display: inline-block;
+    transform: skewX(16deg);
+    margin-left: 12px;
+    margin-right: 0px;
+    position: relative;
+    font-weight: lighter;
+    transition: all 0.3s ease;
+}
+.btn_1:hover .arrow_container {
+    margin-right: 32px;
+}
+.arrow:nth-child(2),
+.arrow:nth-child(3) {
+    position: absolute;
+    transform: translateX(-15px);
+    transition: all 0.3s ease;
+}
+.btn_1:hover .arrow {
+    scale: 2;
+}
+.btn_1:hover .arrow:nth-child(1) {
+    animation: color_anim 1s infinite 0.1s;
+}
+.btn_1:hover .arrow:nth-child(2) {
+    animation: color_anim 1s infinite 0.4s;
+    transform: translateX(2px);
+    scale: 1.2;
+}
+.btn_1:hover .arrow:nth-child(3) {
+    animation: color_anim 1s infinite 0.7s;
+    transform: translateX(17px);
+    scale: 1.4;
+}
+
+@keyframes color_anim {
+    0% {
+        color: white;
+    }
+    50% {
+        color: #FBC638;
+    }
+    100% {
+        color: white;
+    }
+}
